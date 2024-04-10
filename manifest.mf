@@ -1,0 +1,12 @@
+CACHE MANIFEST
+#Version 0.1
+index.html
+/js/bootjq1.js
+/js/bootjq2.js
+/js/bootjq3.js
+/js/CreateButton.js
+/js/dragging.js
+/js/logic.js
+/json/abc.json
+/css/main.css
+/css/bootstrap.css

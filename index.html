@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <style>
+        body {
+            background-color: deeppink;
+            margin-left: 1%;
+            margin-right: 1%;
+            min-height: 100%;
+        }
+
+        html {
+            height: 100%;
+        }
+    </style>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>biased.</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="./js/bootjq1.js"></script>
+    <script src="./js/bootjq2.js"></script>
+    <script src="./js/bootjq3.js"></script>
+    <script src="./js/logic.js"></script>
+    <script src="./js/CreateButton.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+
+<body>
+    <input type="button" class="btn-secondary doneBtn" onclick="SaveToJson()">
+    <section name="Album initialize" id="labelgroup" class="initsection">
+        <b class="beatbox">Artist name</b>
+        <b id="artistLbl" class="beatbox label"></b>
+        <input type="text" class="beatbox" id="artist" placeholder="JPEGMAFIA">
+        <br>
+        <b class="beatbox">Album name</b>
+        <b id="albumLbl" class="beatbox label"></b><br>
+        <input type="text" class="beatbox" id="title" placeholder="SCARING THE HOES VOL. 1">
+    </section>
+        <ol id="Inserted" class="center">
+            <div id="anchor" style="padding-bottom: 90px;"></div>
+        </ol>
+    <a style="display: flex; justify-content: center; align-items: center" href="#anchor"><input type="button"
+            id="addtrack" class="invisbruh" onclick="CreateButtons()" value="+"></a>
+    <div></div>
+    <button id="initAlbum" class="initButton" onclick="InitalizeAlbum()">Init Album</button>
+
+</body>
+
+</html>

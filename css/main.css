@@ -1,0 +1,129 @@
+.beatbox {
+    text-align: center;
+    width: 98%;
+    font-size: large;
+    font-family: system-ui;
+    font-weight: 500;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.addbutton {
+    width: 50px;
+    height: 50px;
+    color: gold;
+    background: darkmagenta;
+    font-size: 40px;
+    position: fixed;
+    bottom: 3%;
+    border-radius: 40%;
+}
+
+.labels-after-init {
+    width: 98%;
+    font-size: large;
+    font-family: system-ui;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.initButton {
+    position: absolute;
+    top: 88%;
+    width: 98%;
+    height: 80px;
+    font-family: "Courier new";
+    background: slategrey;
+    color: aqua;
+    font-size: 15px;
+}
+
+.center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-inline-start: 0px;
+}
+
+.invisbruh {
+    visibility: hidden;
+    position: absolute;
+    width: 0%;
+}
+
+.initsection {
+    text-align: center;
+}
+
+.raters {
+    width: 55px;
+    height: 50px;
+}
+
+.kozgaz {
+    width: 164px;
+    position: absolute;
+    margin-left: 54px;
+    height: 33px;
+}
+
+button.delete {
+    margin-left: 20px !important;
+    background-color: red;
+    color: black;
+    border-color: black;
+    border-width: 5px;
+}
+
+.listElementPad {
+    padding-bottom: 15px;
+    cursor: move;
+}
+
+.padbtnbetween {
+    border-bottom-style: double;
+}
+
+.rollerBladeSeven {
+    position: absolute;
+    top: 291px;
+    left: -1px;
+    will-change: transform;
+    transform: translate3d(54px, -295px, 0px);
+    scroll-behavior: smooth;
+    overflow: scroll;
+    height: 400px;
+}
+
+#anchor {
+    overflow-anchor: auto;
+    height: 1px;
+}
+
+.ratingSelected-bad {
+    background-color: red !important;
+    color: black !important;
+    font-weight: bold;
+}
+.ratingSelected-mid {
+    background-color: oldlace !important;
+    color: black !important;
+    font-weight: bold;
+}
+.ratingSelected-banger {
+    background-color: gold !important;
+    color: black !important;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+input.doneBtn{
+    background-color: red;
+    width: 23px;
+    border-radius: 50%;
+    display: flow-root;
+    position: fixed;
+    right: 2%;
+    top: 2%;
+}
