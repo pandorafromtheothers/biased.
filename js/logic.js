@@ -1,14 +1,6 @@
 //reader writer van, cool
 let initPosition = '0px';
 
-function Kutya(File) {
-    reader = new FileReader;
-    reader.readAsText(File.files[0]);
-    reader.onload = function () {
-        console.log(reader.result);
-        document.getElementById('huhaa').value = reader.result;
-    }
-}
 function InitalizeAlbum() {
     let artist = document.getElementById('artist');
     let album = document.getElementById('title');
