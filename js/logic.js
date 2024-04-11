@@ -52,7 +52,7 @@ function AppendTrackRating(e) {
     }
 }
 function DeleteParent(e) {
-    if (confirm('Biztos törlöd bro?')) {
+    if (confirm('Are u sure you want to delete track?')) {
         e.parentNode.parentNode.remove();
     }
 }
