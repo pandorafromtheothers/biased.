@@ -1,5 +1,5 @@
 This was my first Javascript project I wanted to make, so I made it.
-The code is mostly a mess, with every single thing in global and all, but hey, everyone starts somewhere, and it works! That's enough for me.
+The code is mostly a mess, with every single thing in global and all, but hey, everyone starts somewhere, and it works! That's enough for a first time.
 
 The goal with the design was to look good on phones and nothing else. That's why it looks like that, thank you!
 
