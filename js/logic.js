@@ -1,34 +1,56 @@
 //reader writer van, cool
 let initPosition = '0px';
+if ((chrome.runtime != undefined) || (chrome.runtime != null)) {
+    chrome.runtime.onMessage.addListener((e) => {
+        let data = e.message;
+        if ((data == undefined) || (data == null))
+            return Promise.reject();
+        InitalizeAlbum(data.artist, data.album, data.tracks);
+        return Promise.resolve();
+    });
+}
+window.addEventListener("load", function () {
+    document.getElementById("rate-btn").onclick = () => { SaveToJson() };
+    document.getElementById("initAlbum").onclick = () => { InitalizeAlbum() };
+    document.getElementById("addtrack").onclick = () => { CreateButtons() };
+});
 
-function InitalizeAlbum() {
-    let artist = document.getElementById('artist');
-    let album = document.getElementById('title');
-    if ((artist.value === '') || (album.value === '')) {
+function InitalizeAlbum(artist_name = "", album_name = "", tracks = []) {
+    let _artist = album_name == "" ? document.getElementById('artist').value : artist_name;
+    let _album = album_name == "" ? document.getElementById('title').value : album_name;
+
+    if ((_artist == "") || (_album == "")) {
         alert('nincs kitölve valami');
     }
     else {
-        let group = document.getElementById('labelgroup');
-        let artistlbl = document.getElementById('artistLbl');
-        let albumlbl = document.getElementById('albumLbl');
+        let _group = document.getElementById('labelgroup');
+        let _artistlbl = document.getElementById('artistLbl');
+        let _albumlbl = document.getElementById('albumLbl');
 
-        let initbutton = document.getElementById('initAlbum');
-        let addtrackbutton = document.getElementById('addtrack');
+        let _initbutton = document.getElementById('initAlbum');
+        let _addtrackbutton = document.getElementById('addtrack');
 
-        artistlbl.textContent = artist.value;
-        albumlbl.textContent = album.value;
-        group.style.paddingTop = '0%';
-        artist.setAttribute('class', 'invisbruh');
-        album.setAttribute('class', 'invisbruh');
-        initbutton.setAttribute('class', 'invisbruh');
-        addtrackbutton.setAttribute('class', 'addbutton');
-        CreateButtons();
+        _artistlbl.textContent = _artist;
+        _albumlbl.textContent = _album;
+        _group.style.paddingTop = '0%';
+
+        document.getElementById('artist').setAttribute('class', 'invisbruh');
+        document.getElementById('title').setAttribute('class', 'invisbruh');
+
+        _initbutton.setAttribute('class', 'invisbruh');
+        _addtrackbutton.setAttribute('class', 'addbutton');
+        if (tracks.length == 0)
+            CreateButtons();
+        else {
+            tracks.forEach(e => {
+                CreateButtons(e);
+            })
+        }
     }
-    // loadClient(); !!FONTOS SPOTIFY APIHOZ
 }
-function LetterSelected(e) {
-    e.parentNode.previousSibling.previousSibling.textContent = "";
-    e.parentNode.parentNode.childNodes[4].childNodes[0].textContent = e.textContent;
+function LetterSelected(letterElement) {
+    letterElement.parentNode.previousSibling.previousSibling.textContent = "";
+    letterElement.parentNode.parentNode.childNodes[4].childNodes[0].textContent = letterElement.textContent;
 }
 function AppendTrackRating(e) {
     e.parentNode.childNodes.forEach(element => {
@@ -49,11 +71,6 @@ function AppendTrackRating(e) {
         case '1':
             e.classList.add("ratingSelected-banger");
             break;
-    }
-}
-function DeleteParent(e) {
-    if (confirm('Are u sure you want to delete track?')) {
-        e.parentNode.parentNode.remove();
     }
 }
 function SaveToJson() {
@@ -96,28 +113,14 @@ function SaveToJson() {
         'Mid': jArray.filter(e => e.track_rating == 0.5).length,
         'Bad': jArray.filter(e => e.track_rating == 0 && e.interlude == false).length,
         'Interludes': jArray.filter(e => e.interlude == true).length,
-        'final_rating': finalRating / musicaltracks *10
+        'final_rating': finalRating / musicaltracks * 10
     }
     alert(
-        "Artist: " + mainObj.artist + '\n'+
-        "Album: " + mainObj.album + '\n'+
-        "Interludes: " + mainObj.Interludes + '\n'+
-        "Bangers: " + mainObj.Bangers + '\n'+
-        "Mid: " + mainObj.Mid + '\n'+
-        "Bad: "+mainObj.Bad + '\n'+
+        "Artist: " + mainObj.artist + '\n' +
+        "Album: " + mainObj.album + '\n' +
+        "Interludes: " + mainObj.Interludes + '\n' +
+        "Bangers: " + mainObj.Bangers + '\n' +
+        "Mid: " + mainObj.Mid + '\n' +
+        "Bad: " + mainObj.Bad + '\n' +
         "final_rating: " + mainObj.final_rating);
-        // JSON.stringify(mainObj)
-    // Download(mainObj);
-}
-function Download(obj) {
-    const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.download = obj.artist + '-' + obj.album + '.json';
-    a.href = url;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
 }
