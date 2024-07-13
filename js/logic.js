@@ -10,7 +10,7 @@ if ((chrome.runtime != undefined) || (chrome.runtime != null)) {
     });
 }
 window.addEventListener("load", function () {
-    document.getElementById("rate-btn").onclick = () => { SaveToJson() };
+    document.getElementById("rate-btn").onclick = () => { ShowRating() };
     document.getElementById("initAlbum").onclick = () => { InitalizeAlbum() };
     document.getElementById("addtrack").onclick = () => { CreateButtons() };
 });
@@ -26,12 +26,14 @@ function InitalizeAlbum(artist_name = "", album_name = "", tracks = []) {
         let _group = document.getElementById('labelgroup');
         let _artistlbl = document.getElementById('artistLbl');
         let _albumlbl = document.getElementById('albumLbl');
+        let _ratinglbl = document.getElementById('ratingLbl');
 
         let _initbutton = document.getElementById('initAlbum');
         let _addtrackbutton = document.getElementById('addtrack');
 
         _artistlbl.textContent = _artist;
         _albumlbl.textContent = _album;
+        _ratinglbl.textContent = "0/10";
         _group.style.paddingTop = '0%';
 
         document.getElementById('artist').setAttribute('class', 'invisbruh');
@@ -72,55 +74,58 @@ function AppendTrackRating(e) {
             e.classList.add("ratingSelected-banger");
             break;
     }
+    document.getElementById('ratingLbl').textContent = ShowRating(false).final_rating + "/10";
 }
-function SaveToJson() {
-    let tracks = document.getElementById('Inserted').childNodes;
-    let artistlbl = document.getElementById('artistLbl').textContent;
-    let albumlbl = document.getElementById('albumLbl').textContent;
-    var array = Array.from(tracks);
-    var jObj;
-    var jArray = [];
-    var mainObj = {};
-    let trackrating;
-    let interlude = false;
-    let finalRating = 0.0;
-    let musicaltracks = 0;
-    array = array.filter(x => x.id === 'track');
-    array.forEach(element => {
+function ShowRating(showAlert = true) {
+    let _tracks = document.getElementById('Inserted').childNodes;
+    let _artistlbl = document.getElementById('artistLbl').textContent;
+    let _albumlbl = document.getElementById('albumLbl').textContent;
+    var _array = Array.from(_tracks);
+    var _jObj;
+    var _jArray = [];
+    var _result = {};
+    let _trackrating;
+    let _interlude = false;
+    let _finalRating = 0.0;
+    let _musicaltracks = 0;
+    _array = _array.filter(x => x.id === 'track');
+    _array.forEach(element => {
         trackName = element.childNodes[4].childNodes[0].textContent;
-        trackrating = element.childNodes[4].slot;
-        if (trackrating === '-1') {
-            interlude = true;
-            trackrating = 0;
+        _trackrating = element.childNodes[4].slot;
+        if (_trackrating === '-1') {
+            _interlude = true;
+            _trackrating = 0;
         }
         else {
-            interlude = false;
-            musicaltracks += 1;
+            _interlude = false;
+            _musicaltracks += 1;
         }
-        finalRating += parseFloat(trackrating);
-        jObj = {
+        _finalRating += parseFloat(_trackrating);
+        _jObj = {
             'track_namestart': trackName,
-            'track_rating': trackrating,
-            'interlude': interlude
+            'track_rating': _trackrating,
+            'interlude': _interlude
         };
-        jArray.push(jObj);
+        _jArray.push(_jObj);
     });
-    mainObj = {
-        'artist': artistlbl,
-        'album': albumlbl,
+    _result = {
+        'artist': _artistlbl,
+        'album': _albumlbl,
         // 'tracks': jArray,
-        'Bangers': jArray.filter(e => e.track_rating == 1).length,
-        'Mid': jArray.filter(e => e.track_rating == 0.5).length,
-        'Bad': jArray.filter(e => e.track_rating == 0 && e.interlude == false).length,
-        'Interludes': jArray.filter(e => e.interlude == true).length,
-        'final_rating': finalRating / musicaltracks * 10
+        'Bangers': _jArray.filter(e => e.track_rating == 1).length,
+        'Mid': _jArray.filter(e => e.track_rating == 0.5).length,
+        'Bad': _jArray.filter(e => e.track_rating == 0 && e.interlude == false).length,
+        'Interludes': _jArray.filter(e => e.interlude == true).length,
+        'final_rating': (_finalRating / _musicaltracks * 10).toFixed(2)
     }
-    alert(
-        "Artist: " + mainObj.artist + '\n' +
-        "Album: " + mainObj.album + '\n' +
-        "Interludes: " + mainObj.Interludes + '\n' +
-        "Bangers: " + mainObj.Bangers + '\n' +
-        "Mid: " + mainObj.Mid + '\n' +
-        "Bad: " + mainObj.Bad + '\n' +
-        "final_rating: " + mainObj.final_rating);
+    if (showAlert)
+        alert(
+            "Artist: " + _result.artist + '\n' +
+            "Album: " + _result.album + '\n' +
+            "Interludes: " + _result.Interludes + '\n' +
+            "Bangers: " + _result.Bangers + '\n' +
+            "Mid: " + _result.Mid + '\n' +
+            "Bad: " + _result.Bad + '\n' +
+            "final_rating: " + _result.final_rating);
+    return _result;
 }
