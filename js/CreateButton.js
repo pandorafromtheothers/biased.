@@ -13,7 +13,7 @@ function CreateButtons(trackName = "") {
 
     _result.appendChild(ButtonCreation.AddRatingListContainer());
     if (trackName != "") {
-        let _trackNameStart = Array.from(trackName)[0];
+        let _trackNameStart = Array.from(trackName)[0].toUpperCase();
         let _array = _result.children[2];
         let _element = undefined;
         for (let _index = 0; _index < _array.children.length; _index++) {
