@@ -61,22 +61,11 @@ ButtonCreation.AddRatingListContainer = () => {
     _result.id = 'track';
     _result.slot = '-1';
     _result.step = 'any';
-    _result.appendChild(ButtonCreation.CreateInterludeButton());
+    _result.appendChild(ButtonCreation.CreateRatingButton(-1, '-'));
     _result.appendChild(ButtonCreation.CreateRatingButton(1, 'Banger'));
     _result.appendChild(ButtonCreation.CreateRatingButton(0.5, 'Mid'));
     _result.appendChild(ButtonCreation.CreateRatingButton(0, 'Bad'));
     _result.appendChild(ButtonCreation.CreateDeleteButton());
-    return _result;
-}
-ButtonCreation.CreateInterludeButton = () => {
-    let _result = document.createElement('button');
-    _result.type = 'button';
-    _result.id = 'raters';
-    _result.onclick = () => { AppendTrackRating(_result) };
-    _result.value = -1;
-    _result.classList.add("drag", "btn", "btn-secondary", "raters");
-    _result.textContent = '-';
-    _result.draggable = 'true';
     return _result;
 }
 ButtonCreation.CreateRatingButton = (trackValue, text) => {
