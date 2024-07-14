@@ -26,6 +26,10 @@ function CreateButtons(trackName = "") {
     }
     document.getElementById('anchor').insertAdjacentElement("beforebegin", _result);
 }
+function LetterSelected(letterElement) {
+    letterElement.parentNode.previousSibling.previousSibling.textContent = "";
+    letterElement.parentNode.parentNode.childNodes[4].childNodes[0].textContent = letterElement.textContent;
+}
 
 ButtonCreation.AddDropDownButton = () => {
     let _result = document.createElement('button');

@@ -1,5 +1,3 @@
-//reader writer van, cool
-let initPosition = '0px';
 if ((chrome.runtime != undefined) || (chrome.runtime != null)) {
     chrome.runtime.onMessage.addListener((e) => {
         let data = e.message;
@@ -9,11 +7,6 @@ if ((chrome.runtime != undefined) || (chrome.runtime != null)) {
         return Promise.resolve();
     });
 }
-window.addEventListener("load", function () {
-    document.getElementById("rate-btn").onclick = () => { ShowRating() };
-    document.getElementById("initAlbum").onclick = () => { InitalizeAlbum() };
-    document.getElementById("addtrack").onclick = () => { CreateButtons() };
-});
 
 function InitalizeAlbum(artist_name = "", album_name = "", tracks = []) {
     let _artist = album_name == "" ? document.getElementById('artist').value : artist_name;
@@ -49,10 +42,6 @@ function InitalizeAlbum(artist_name = "", album_name = "", tracks = []) {
             })
         }
     }
-}
-function LetterSelected(letterElement) {
-    letterElement.parentNode.previousSibling.previousSibling.textContent = "";
-    letterElement.parentNode.parentNode.childNodes[4].childNodes[0].textContent = letterElement.textContent;
 }
 function AppendTrackRating(e) {
     e.parentNode.childNodes.forEach(element => {
@@ -129,3 +118,9 @@ function ShowRating(showAlert = true) {
             "final_rating: " + _result.final_rating);
     return _result;
 }
+
+window.addEventListener("load", function () {
+    document.getElementById("rate-btn").onclick = () => { ShowRating() };
+    document.getElementById("initAlbum").onclick = () => { InitalizeAlbum() };
+    document.getElementById("addtrack").onclick = () => { CreateButtons() };
+});
