@@ -15,8 +15,13 @@ function getList() {
                 _score = 0
             else
                 _score = 1;
-        } else
-            _score = 0.5;
+        } else {
+            let _time = _htmlList[index].querySelectorAll("yt-formatted-string[ellipsis-truncate-styling][ellipsis-truncate]")[2].textContent.split(":");
+            if (_time[0] == "0")
+                _score = -1;
+            else
+                _score = 0.5;
+        }
 
         _tracks.push({ name: _track, score: _score });
     }

@@ -70,11 +70,11 @@ ButtonCreation.AddRatingListContainer = (track = {}) => {
     _result.appendChild(ButtonCreation.CreateRatingButton(0.5, 'Mid'));
     _result.appendChild(ButtonCreation.CreateRatingButton(0, 'Bad'));
     _result.appendChild(ButtonCreation.CreateDeleteButton());
-    if ((track.score != undefined) && (track.score != null)) {
-        let _scoreBtn = _result.querySelector("button[value='$']".replace("$", track.score));
-        AppendTrackRating(_scoreBtn);
-    }
+    if ((track.score == undefined) || (track.score == null))
+        return _result;
 
+    let _scoreBtn = _result.querySelector("button[value='$']".replace("$", track.score));
+    AppendTrackRating(_scoreBtn);
     return _result;
 }
 ButtonCreation.CreateRatingButton = (trackValue, text) => {

@@ -40,6 +40,7 @@ function InitalizeAlbum(artist_name = "", album_name = "", tracks = []) {
             tracks.forEach(e => {
                 CreateButtons(e);
             })
+            document.getElementById('ratingLbl').textContent = ShowRating(false).final_rating + "/10";
         }
     }
 }
