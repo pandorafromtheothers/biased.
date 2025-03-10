@@ -124,3 +124,10 @@ window.addEventListener("load", function () {
     document.getElementById("initAlbum").onclick = () => { InitalizeAlbum() };
     document.getElementById("addtrack").onclick = () => { CreateButtons() };
 });
+window.addEventListener("keydown", function (e) {
+    if (e.key = "c") {
+        let _list = document.querySelectorAll("button[value='-1']").forEach(e => {
+            e.click();
+        });
+    }
+})

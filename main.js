@@ -7,7 +7,17 @@ function getList() {
 
     let _tracks = [];
     for (let index = 0; index < _htmlList.length; index++) {
-        _tracks.push(_htmlList[index].querySelector("a").textContent);
+        let _track = _htmlList[index].querySelector("a").textContent;
+        let _score = _htmlList[index].querySelector("yt-button-shape[aria-pressed='true']");
+        if (_score != null) {
+            if (_score.id.includes("dislike"))
+                _score = 0
+            else
+                _score = 1;
+        } else
+            _score = 0.5;
+
+        _tracks.push({ name: _track, score: _score });
     }
     _result.tracks = _tracks;
 

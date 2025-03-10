@@ -1,7 +1,7 @@
 let ButtonCreation = {} || undefined;
 ButtonCreation.ABCArray = ["A", "Á", "B", "C", "D", "E", "É", "F", "G", "H", "I", "Í", "J", "K", "L", "M", "N", "O", "Ó", "Ö", "Ő", "P", "Q", "R", "S", "T", "U", "Ú", "Ü", "Ű", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-function CreateButtons(trackName = "") {
+function CreateButtons(track = {}) {
     let _result = document.createElement('li');
     _result.classList.add("dropdown", "listElementPad");
     _result.id = 'track';
@@ -11,9 +11,9 @@ function CreateButtons(trackName = "") {
     _result.appendChild(ButtonCreation.AddDropDownList());
     _result.appendChild(document.createElement('br'));
 
-    _result.appendChild(ButtonCreation.AddRatingListContainer());
-    if (trackName != "") {
-        let _trackNameStart = Array.from(trackName)[0].toUpperCase();
+    _result.appendChild(ButtonCreation.AddRatingListContainer(track));
+    if (track.name != undefined) {
+        let _trackNameStart = Array.from(track.name)[0].toUpperCase();
         let _array = _result.children[2];
         let _element = undefined;
         for (let _index = 0; _index < _array.children.length; _index++) {
@@ -58,7 +58,7 @@ ButtonCreation.AddDropDownList = () => {
     });
     return _result;
 }
-ButtonCreation.AddRatingListContainer = () => {
+ButtonCreation.AddRatingListContainer = (track = {}) => {
     let _result = document.createElement('li');
     _result.classList.add("btn-group", "padbtnbetween");
     _result.role = 'group';
@@ -70,6 +70,11 @@ ButtonCreation.AddRatingListContainer = () => {
     _result.appendChild(ButtonCreation.CreateRatingButton(0.5, 'Mid'));
     _result.appendChild(ButtonCreation.CreateRatingButton(0, 'Bad'));
     _result.appendChild(ButtonCreation.CreateDeleteButton());
+    if ((track.score != undefined) && (track.score != null)) {
+        let _scoreBtn = _result.querySelector("button[value='$']".replace("$", track.score));
+        AppendTrackRating(_scoreBtn);
+    }
+
     return _result;
 }
 ButtonCreation.CreateRatingButton = (trackValue, text) => {
