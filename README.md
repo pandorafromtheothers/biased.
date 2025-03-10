@@ -8,8 +8,6 @@ Update #1
 
 -->Press the extension button, and it will load in the artist name, album name, and the album tracks on a new tab.
 
--->If multiple jumps have been made through YT Music, it needs a refresh, otherwise it will put on random tracks on the list from cache.
-
 ![image](https://github.com/user-attachments/assets/adec0668-5f60-495e-9b4a-59cfe7cfd708)
 
 T̶h̶i̶s̶ w̶a̶s̶ m̶y̶ f̶i̶r̶s̶t̶ J̶a̶v̶a̶s̶c̶r̶i̶p̶t̶ p̶r̶o̶j̶e̶c̶t̶ I̶ w̶a̶n̶t̶e̶d̶ t̶o̶ m̶a̶k̶e̶, s̶o̶ I̶ m̶a̶d̶e̶ i̶t̶.
