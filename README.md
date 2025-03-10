@@ -1,3 +1,18 @@
+Update #2
+
+
++Tracks opened with YT Music will be loaded with their respective ratings. (Like, Disliked, Nothing is interpreted as "Mid")
+
++All ratings can be cleared by pressing 'c' on the keyboard
+
+-Fixed more ugly code
+
+-Fixed a problem where you had to reload YT Music for the rater app to correctly display the tracks
+
+-Fixed a problem, where you couldn't initate a rate tab for playlists
+
+---
+
 Update #1
 
 -Fixed some of the ugliness of the code
@@ -7,8 +22,6 @@ Update #1
 -YT Music extension integration!!
 
 -->Press the extension button, and it will load in the artist name, album name, and the album tracks on a new tab.
-
--->If multiple jumps have been made through YT Music, it needs a refresh, otherwise it will put on random tracks on the list from cache.
 
 ![image](https://github.com/user-attachments/assets/adec0668-5f60-495e-9b4a-59cfe7cfd708)
 
