@@ -1,3 +1,18 @@
+Update #2
+
+
++Tracks opened with YT Music will be loaded with their respective ratings. (Like, Disliked, Nothing is interpreted as "Mid")
+
++All ratings can be cleared by pressing 'c' on the keyboard
+
+-Fixed more ugly code
+
+-Fixed a problem where you had to reload YT Music for the rater app to correctly display the tracks
+
+-Fixed a problem, where you couldn't initate a rate tab for playlists
+
+---
+
 Update #1
 
 -Fixed some of the ugliness of the code
