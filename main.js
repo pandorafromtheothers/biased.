@@ -9,20 +9,22 @@ function getList() {
     let _tracks = [];
     for (let index = 0; index < _htmlList.length; index++) {
         let _track = _htmlList[index].querySelector("a").textContent;
-        let _score = _htmlList[index].querySelector("yt-button-shape[aria-pressed='true']");
-        if (_score != null) {
-            if (_score.id.includes("dislike"))
-                _score = 0
-            else
+        let _score = [..._htmlList[index].querySelector("ytmusic-like-button-renderer").attributes].filter(_ => _.name == "like-status")[0].value;
+        switch (_score.toUpperCase()) {
+            case "LIKE":
                 _score = 1;
-        } else {
-            let _time = _htmlList[index].querySelectorAll("yt-formatted-string[ellipsis-truncate-styling][ellipsis-truncate]")[2].textContent.split(":");
-            if (_time[0] == "0")
-                _score = -1;
-            else
-                _score = 0.5;
+                break;
+            case "DISLIKE":
+                _score = 0
+                break;
+            case "INDIFFERENT":
+                let _time = _htmlList[index].querySelectorAll("yt-formatted-string[ellipsis-truncate-styling][ellipsis-truncate]")[2].textContent.split(":");
+                if (_time[0] == "0")
+                    _score = -1;
+                else
+                    _score = 0.5;
+                break;
         }
-
         _tracks.push({ name: _track, score: _score });
     }
     _result.tracks = _tracks;
